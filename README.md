@@ -58,6 +58,65 @@ SW-AI-W02-03-TEMPLATE/
 > | `week3/2. advanced` | 3 | 01 ~ 03 | 그래프 응용 + 고급 DP |
 
 
+## ⚙️ 실행 환경 준비 (Python 3 설치)
+
+이 저장소의 모든 문제는 **외부 라이브러리 없이 순수 표준 Python 만으로** 풀 수 있습니다.
+추가로 `pip install` 해야 하는 패키지는 없습니다.
+
+### 필요한 것
+
+- **Python 3.8 이상** (권장: 최신 3.x)
+- 채점기(`check.py`)가 내부적으로 `python3` 명령을 호출하므로, `python` 이 아니라 **`python3` 명령이 사용 가능해야** 합니다.
+- (선택) 저장소 제출용 **Git**, 코드 편집용 에디터(VS Code / Cursor 등)
+
+### 설치 방법 (운영체제별)
+
+**macOS**
+
+```bash
+# Homebrew 사용 (권장)
+brew install python
+
+# 설치 확인
+python3 --version
+```
+
+> macOS 에는 시스템 Python 이 없거나 오래된 경우가 있으므로 Homebrew 로 설치하는 것을 권장합니다.
+
+**Windows**
+
+1. [python.org/downloads](https://www.python.org/downloads/) 에서 설치 파일 다운로드
+2. 설치 시 **"Add Python to PATH"** 옵션을 반드시 체크
+3. 확인 (PowerShell / CMD):
+
+```powershell
+python --version
+py --version
+```
+
+> Windows 에서는 `python3` 대신 `python` 또는 `py` 를 사용합니다.
+> 채점 시 `python3` 대신 `python check.py ...` 형태로 실행하세요.
+
+**Linux (Ubuntu/Debian)**
+
+```bash
+sudo apt update
+sudo apt install python3
+
+# 설치 확인
+python3 --version
+```
+
+### 설치 확인
+
+아래 명령이 버전 정보를 출력하면 준비 완료입니다.
+
+```bash
+python3 --version
+# 예: Python 3.13.4
+```
+
+
 ## 저장소 설정하기
 
 이 템플릿을 본인의 GitHub 저장소로 복사합니다.

@@ -25,17 +25,22 @@
 """
 
 def is_palindrome(s):
-    """
-    문자열이 회문인지 판별하는 함수
-    
-    Args:
-        s: 판별할 문자열
-    
-    Returns:
-        bool: 회문이면 True, 아니면 False
-    """
-    # TODO: 알파벳과 숫자만 남기고 소문자로 변환하세요
-    # 힌트: isalnum() 메서드와 lower() 메서드 사용
+
+    in_put = s.lower()
+    sorted_input = [ord(c) for c in in_put]
+    sorted_output = []
+
+    length = len(sorted_input)
+
+    for i in range(0, length):
+        if 97 <= sorted_input[i] <= 122 or 48 <= sorted_output[i] <= 57:
+            sorted_output.append(sorted_input[i])
+
+    if sorted_output != sorted_output[::-1]:
+        return False
+
+    return True
+
     pass
     
     # TODO: 정제된 문자열이 회문인지 확인하세요
