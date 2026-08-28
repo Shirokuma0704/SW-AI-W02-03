@@ -33,7 +33,7 @@ def is_palindrome(s):
     length = len(sorted_input)
 
     for i in range(0, length):
-        if 97 <= sorted_input[i] <= 122 or 48 <= sorted_output[i] <= 57:
+        if 97 <= sorted_input[i] <= 122 or 48 <= sorted_input[i] <= 57:
             sorted_output.append(sorted_input[i])
 
     if sorted_output != sorted_output[::-1]:
