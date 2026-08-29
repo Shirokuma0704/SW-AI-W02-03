@@ -42,10 +42,20 @@ def is_valid_parentheses(s):
     ## : 닫는 괄호 ')'면
     ## 스택이 비어있으면 False 반환
     ## 아니면 스택에서 pop
-    pass
+    for x in s:
+        if x == "(":
+            stack.append("(")
+        if x == ")":
+            if len(stack) == 0:
+                return False
+            else:
+                stack.pop()
     
     # TODO: 반복이 끝나면 스택이 비어있는지 확인
-    pass
+    if len(stack) == 0:
+        return True
+    else:
+        return False
 
 # 테스트 케이스
 if __name__ == "__main__":
