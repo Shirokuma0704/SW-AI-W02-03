@@ -46,25 +46,32 @@ def check_solution(problem_file):
     problem_path = SCRIPT_DIR / problem_file
 
     if not problem_path.exists():
-        return False, f"❌ 파일을 찾을 수 없습니다: {problem_file}"
+        return False, f" 파일을 찾을 수 없습니다: {problem_file}"
 
     base_name = problem_file.replace('.py', '')
     output_file = SCRIPT_DIR / f"{base_name}_output.txt"
 
     if not output_file.exists():
-        return False, f"❌ 정답 파일을 찾을 수 없습니다: {output_file.name}"
+        return False, f" 정답 파일을 찾을 수 없습니다: {output_file.name}"
 
     try:
+        # 자식 프로세스가 UTF-8로 출력하도록 강제하고, 같은 인코딩으로 읽는다
+        # (기본값은 locale 인코딩이라 윈도우에서 cp949로 디코딩되어 깨진다)
+        child_env = os.environ.copy()
+        child_env['PYTHONIOENCODING'] = 'utf-8'
+
         result = subprocess.run(
-            ['python3', str(problem_path)],
+            [sys.executable, str(problem_path)],
             capture_output=True,
             text=True,
+            encoding='utf-8',
             timeout=10,
             cwd=str(SCRIPT_DIR),
+            env=child_env,
         )
 
         if result.returncode != 0:
-            return False, f"❌ 실행 오류:\n{result.stderr}"
+            return False, f" 실행 오류:\n{result.stderr}"
 
         actual_output = result.stdout.strip()
 
@@ -76,9 +83,9 @@ def check_solution(problem_file):
         expected_lines = [line.strip() for line in expected_output.split('\n') if line.strip()]
 
         if actual_lines == expected_lines:
-            return True, "✅ PASS - 정답입니다!"
+            return True, " PASS - 정답입니다!"
         else:
-            diff_msg = "❌ FAIL - 출력이 다릅니다.\n\n"
+            diff_msg = " FAIL - 출력이 다릅니다.\n\n"
             diff_msg += "=== 예상 출력 ===\n"
             diff_msg += expected_output[:500]
             if len(expected_output) > 500:
@@ -90,9 +97,9 @@ def check_solution(problem_file):
             return False, diff_msg
 
     except subprocess.TimeoutExpired:
-        return False, "❌ 시간 초과 (10초)"
+        return False, " 시간 초과 (10초)"
     except Exception as e:
-        return False, f"❌ 오류 발생: {str(e)}"
+        return False, f" 오류 발생: {str(e)}"
 
 
 def run_all():
@@ -112,7 +119,7 @@ def run_all():
     failed_files = []
 
     for problem_file in problem_files:
-        print(f"📝 {problem_file}")
+        print(f" {problem_file}")
         success, message = check_solution(problem_file)
 
         if success:
@@ -146,10 +153,10 @@ def run_single(problem_file):
     print()
 
     if success:
-        print("🎉 축하합니다! 문제를 해결했습니다!")
+        print(" 축하합니다! 문제를 해결했습니다!")
         return 0
     else:
-        print("💡 힌트: 문제 파일의 TODO 부분을 다시 확인해보세요.")
+        print(" 힌트: 문제 파일의 TODO 부분을 다시 확인해보세요.")
         return 1
 
 
