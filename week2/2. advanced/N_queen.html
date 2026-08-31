@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>N-Queen 시각화</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 30px; }
+        #board { display: grid; justify-content: center; margin-top: 20px; }
+        .cell { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; }
+        .white { background-color: #f0d9b5; }
+        .black { background-color: #b58863; }
+        .queen { color: #d00; }
+        #controls { margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <h1>N-Queen 시각화 (N=8)</h1>
+    <div id="controls">
+        <button onclick="runNQueen()">실행하기</button>
+    </div>
+    <div id="board"></div>
+
+    <script>
+        const N = 8;
+        let board = Array.from(Array(N), () => Array(N).fill(0));
+        let solutions = [];
+
+        function isSafe(row, col) {
+            for (let i = 0; i < row; i++) {
+                if (board[i][col] === 1) return false;
+                if (col - (row - i) >= 0 && board[i][col - (row - i)] === 1) return false;
+                if (col + (row - i) < N && board[i][col + (row - i)] === 1) return false;
+            }
+            return true;
+        }
+
+        function solve(row) {
+            if (row === N) {
+                solutions.push(board.map(r => [...r]));
+                return;
+            }
+            for (let col = 0; col < N; col++) {
+                if (isSafe(row, col)) {
+                    board[row][col] = 1;
+                    solve(row + 1);
+                    board[row][col] = 0;
+                }
+            }
+        }
+
+        function drawBoard(solution) {
+            const boardDiv = document.getElementById('board');
+            boardDiv.style.gridTemplateColumns = `repeat(${N}, 40px)`;
+            boardDiv.innerHTML = '';
+
+            for (let r = 0; r < N; r++) {
+                for (let c = 0; c < N; c++) {
+                    const cell = document.createElement('div');
+                    cell.className = `cell ${(r + c) % 2 === 0 ? 'white' : 'black'}`;
+                    if (solution[r][c] === 1) {
+                        cell.innerText = '♛';
+                        cell.classList.add('queen');
+                    }
+                    boardDiv.appendChild(cell);
+                }
+            }
+        }
+
+        function runNQueen() {
+            solutions = [];
+            solve(0);
+            if (solutions.length > 0) {
+                drawBoard(solutions[0]);
+            } else {
+                alert('해결책이 없습니다.');
+            }
+        }
+    </script>
+</body>
+</html>

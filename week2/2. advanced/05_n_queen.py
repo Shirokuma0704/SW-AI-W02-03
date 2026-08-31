@@ -68,7 +68,9 @@ def n_queens(n: int) -> int:
     #       ...
     #   place(0)
     #   return count
-    pass
+    cols = [0] * n
+    count = 0
+
 
 
 if __name__ == "__main__":
