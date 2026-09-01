@@ -68,10 +68,34 @@ def n_queens(n: int) -> int:
     #       ...
     #   place(0)
     #   return count
+
     cols = [0] * n
-    count = 0
+
+    def is_safe(row, c):
+
+        for i in range(row):
+            if cols[i] == c or abs(cols[i] - c) == row - i:
+                return False
+        return True
+
+    def place(row,result):
 
 
+        if row == n:
+            result += 1
+            return result
+
+        #공격중인지 조건확인문
+        for c in range(n):
+            if is_safe(row,c):
+                cols[row] = c
+                result = place(row + 1, result)
+        return result
+
+
+
+    count = place(0,0)
+    return count
 
 if __name__ == "__main__":
     print("[테스트] N=1 ~ N=8 에 대한 가능한 배치의 수")
