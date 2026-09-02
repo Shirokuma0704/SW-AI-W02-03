@@ -58,7 +58,7 @@ word_search(board: list, word: str) -> bool
   (더 큰 board 에서도 빠르도록 탐색 가지치기를 넣을 수 있을까?)
 """
 
-def word_search(self, board, word):
+def word_search(board, word):
 
     m = len(board)
     n = len(board[0])
