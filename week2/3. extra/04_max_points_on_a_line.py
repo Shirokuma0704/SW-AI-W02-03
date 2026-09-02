@@ -83,6 +83,7 @@ max_points(points: list) -> int
 "세 점이 한 직선 위인가" 는 나눗셈 없이 정수 곱셈만으로 판정할 수 있다.
 """
 from math import gcd
+from collections import Counter
 
 
 def max_points(points: list) -> int:
@@ -93,15 +94,25 @@ def max_points(points: list) -> int:
         max_points([[0,0]]) == 1
     """
     # TODO: 한 직선 위에 놓인 점의 최대 개수를 구해서 반환하세요.
+    max_c = 1
+    if len(points)<2:
+        return len(points)
+
     for i in range(len(points)):
+        d = Counter()
         for j in range(len(points)):
             if i == j:
                 continue
             x_gain = points[i][0] - points[j][0]
-            y_gain = points[i][1] - points[j][0]
+            y_gain = points[i][1] - points[j][1]
             ratio = (x_gain // gcd(x_gain,y_gain), y_gain // gcd(x_gain,y_gain))
+            d[ratio] += 1
+        count = max(d.values())
+        if max_c < count: max_c = count
 
-    print(ratio)
+
+
+    return max_c + 1
 
 # ---------------------------------------------------------------------------
 # 테스트
