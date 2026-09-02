@@ -1,0 +1,46 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# 가상환경 (인터프리터 사본이라 저장소에 올리면 안 됨)
+.venv/
+venv/
+env/
+ENV/
+
+# 배포/빌드 산출물
+build/
+dist/
+*.egg-info/
+
+# 테스트 / 커버리지 캐시
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# ---- PyCharm / JetBrains ----
+# 개인 IDE 설정. 사람마다 달라서 공유하면 서로 덮어씀
+.idea/
+*.iml
+
+# ---- VS Code ----
+.vscode/
+
+# ---- Jupyter ----
+.ipynb_checkpoints/
+
+# ---- OS 자동 생성 파일 ----
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# ---- 기타 ----
+*.log
+*.bak
+*.swp
