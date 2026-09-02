@@ -66,15 +66,15 @@ class LinkedList:
         new_node = Node(data)
 
         if index == 0:
-            self.head = new_node
+            self.head, new_node.next = new_node, current
             return
 
-        for i in range(index):
+        for i in range(1, index):
             if i < index and current is None:
                 return IndexError
             else: current = current.next
 
-        current, current.next = new_node, current
+        current.next, new_node.next = new_node, current.next
 
 
     def delete_value(self, data):
@@ -87,7 +87,16 @@ class LinkedList:
 
         예) [10, 20, 30, 20] 에서 delete_value(20) -> True, 리스트는 [10, 30, 20]
         """
-        pass
+        current = self.head
+
+        while current.next is not None:
+            next_node = current.next
+            if next_node.data == data:
+                current.next = current.next.next
+                return True
+            else: current = current.next
+
+        return False
 
     def reverse(self):
         """
@@ -98,7 +107,17 @@ class LinkedList:
 
         예) [1, 2, 3] -> [3, 2, 1]
         """
-        pass
+        prev = None
+        curr = self.head
+
+        while curr is not None:
+            next_node = curr.next  # 1. 다음 노드를 미리 기억해 둡니다.
+            curr.next = prev  # 2. 현재 노드의 방향을 이전 노드로 뒤집습니다.
+            prev = curr  # 3. prev를 현재 노드로 한 칸 전진시킵니다.
+            curr = next_node  # 4. curr를 다음 노드로 한 칸 전진시킵니다.
+
+        # 순회가 끝나면 prev가 기존 리스트의 마지막 노드(새로운 head)를 가리킵니다.
+        self.head = prev
 
 
 # ============================================================================

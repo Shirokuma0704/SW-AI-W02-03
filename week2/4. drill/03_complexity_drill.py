@@ -38,9 +38,13 @@ def common_elements_slow(a, b):
 
 
 def common_elements_fast(a, b):
-    """위 slow 와 '완전히 똑같은 결과' 를, 훨씬 빠르게! 여기를 채워봐요."""
-    pass
+    """[조건] a 의 순서 유지 + 중복 없음.
 
+    위 slow 와 결과가 완전히 똑같아야 해요. 훨씬 빠르게! 여기를 채워봐요.
+    """
+    results = []
+    for i, data in enumerate(a):
+        data == set(b)
 
 # ============================================================================
 # 문제 2 : 순서를 유지한 중복 제거
@@ -55,8 +59,12 @@ def dedup_keep_order_slow(nums):
 
 
 def dedup_keep_order_fast(nums):
-    """위 slow 와 '완전히 똑같은 결과' 를, 훨씬 빠르게! 여기를 채워봐요."""
-    pass
+    """[조건] 처음 나온 순서 유지.
+
+    위 slow 와 결과가 완전히 똑같아야 해요. 훨씬 빠르게! 여기를 채워봐요.
+    """
+    set_nums = set(nums)
+    return list(set_nums)
 
 
 # ============================================================================
@@ -73,7 +81,10 @@ def has_pair_with_sum_slow(nums, target):
 
 
 def has_pair_with_sum_fast(nums, target):
-    """위 slow 와 '완전히 똑같은 결과' 를, 훨씬 빠르게! 여기를 채워봐요."""
+    """[조건] 서로 다른 두 자리 i < j. 같은 칸을 두 번 쓰면 안 돼요.
+
+    위 slow 와 결과가 완전히 똑같아야 해요. 훨씬 빠르게! 여기를 채워봐요.
+    """
     pass
 
 
@@ -84,11 +95,11 @@ def has_pair_with_sum_fast(nums, target):
 #   틀려도 괜찮아요. 아래 측정값이랑 맞춰보는 게 이 칸의 목적이에요.
 # ============================================================================
 COMPLEXITY_ANSWERS = {
-    "common_elements_slow":  "",
+    "common_elements_slow":  "nm",
     "common_elements_fast":  "",
-    "dedup_keep_order_slow": "",
+    "dedup_keep_order_slow": "n",
     "dedup_keep_order_fast": "",
-    "has_pair_with_sum_slow": "",
+    "has_pair_with_sum_slow": "n^2",
     "has_pair_with_sum_fast": "",
 }
 

@@ -34,7 +34,11 @@ def lower_bound(arr, target):
         [1, 3, 3, 5], target=4 -> 3
         [1, 3, 3, 5], target=9 -> 4
     """
-    pass
+    for i, data in enumerate(arr):
+        if data >= target:
+            return i
+
+    return len(arr)
 
 
 def upper_bound(arr, target):
@@ -46,7 +50,11 @@ def upper_bound(arr, target):
     예) [1, 3, 3, 5], target=3 -> 3
         [1, 3, 3, 5], target=0 -> 0
     """
-    pass
+    for i, data in enumerate(arr):
+        if data > target:
+            return i
+
+    return len(arr)
 
 
 def count_occurrences(arr, target):
@@ -57,7 +65,9 @@ def count_occurrences(arr, target):
 
     예) [1, 3, 3, 3, 5], target=3 -> 3
     """
-    pass
+    start_index = lower_bound(arr,target)
+    end_index = upper_bound(arr, target)
+    return end_index - start_index
 
 
 def max_unit_length(lines, k):
