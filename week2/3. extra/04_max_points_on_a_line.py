@@ -82,6 +82,7 @@ max_points(points: list) -> int
 느리지만 확실하다. (300 점에서는 오래 걸리니 작은 입력에만 쓸 것)
 "세 점이 한 직선 위인가" 는 나눗셈 없이 정수 곱셈만으로 판정할 수 있다.
 """
+from math import gcd
 
 
 def max_points(points: list) -> int:
@@ -98,12 +99,13 @@ def max_points(points: list) -> int:
                 continue
             x_gain = points[i][0] - points[j][0]
             y_gain = points[i][1] - points[j][0]
+            ratio = (x_gain // gcd(x_gain,y_gain), y_gain // gcd(x_gain,y_gain))
 
+    print(ratio)
 
 # ---------------------------------------------------------------------------
 # 테스트
 # ---------------------------------------------------------------------------
-
 # 30 x 10 격자 = 300 점 (제약 상한). 한 가로줄에 30 개가 놓이므로 답은 30.
 GRID = [[x, y] for y in range(10) for x in range(30)]
 
