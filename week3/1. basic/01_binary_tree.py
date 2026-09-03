@@ -1,3 +1,4 @@
+
 """
 [이진 트리 - Binary Tree 기본]
 
@@ -39,57 +40,67 @@ class TreeNode:
         self.left = None
         self.right = None
 
-def preorder(root):
+def preorder(rt):
+    rst = preorder_r(rt,[] )
+    return rst
     """전위 순회: 루트 → 왼쪽 → 오른쪽"""
-    result = []
-    
+
+def preorder_r(root, result):
     # TODO: root가 None이면 빈 리스트 반환
-    pass
+    if root is None: return []
     
     # TODO: 루트 값 추가
-    pass
+    result.append(root.value)
     
     # TODO: 왼쪽 서브트리 순회
-    pass
+    if root.left is not None: preorder_r(root.left, result)
+
     
     # TODO: 오른쪽 서브트리 순회
-    pass
+    if root.right is not None: preorder_r(root.right, result)
     
     return result
 
-def inorder(root):
+def inorder(rt):
+    rst = inorder_r(rt,[])
+    return rst
+
+def inorder_r(root, result):
     """중위 순회: 왼쪽 → 루트 → 오른쪽"""
-    result = []
     
     # TODO: root가 None이면 빈 리스트 반환
-    pass
-    
+    if root is None: return []
+
     # TODO: 왼쪽 서브트리 순회
-    pass
+    if root.left is not None: inorder_r(root.left, result)
     
     # TODO: 루트 값 추가
-    pass
+    result.append(root.value)
     
     # TODO: 오른쪽 서브트리 순회
-    pass
+    if root.right is not None: inorder_r(root.right, result)
     
     return result
 
-def postorder(root):
+def postorder(rt):
+    rst = postorder_r(rt,[])
+    return rst
+
+def postorder_r(root,result):
+
     """후위 순회: 왼쪽 → 오른쪽 → 루트"""
-    result = []
-    
+
     # TODO: root가 None이면 빈 리스트 반환
-    pass
-    
+    if root is None: return []
+
     # TODO: 왼쪽 서브트리 순회
-    pass
+    if root.left is not None: postorder_r(root.left, result)
     
     # TODO: 오른쪽 서브트리 순회
-    pass
+    if root.right is not None: postorder_r(root.right, result)
     
     # TODO: 루트 값 추가
-    pass
+    result.append(root.value)
     
     return result
 
