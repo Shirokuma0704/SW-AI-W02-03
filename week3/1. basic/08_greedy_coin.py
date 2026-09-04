@@ -43,9 +43,12 @@ def make_change_greedy(change, coins):
     result = {}
     total_coins = 0
     
-    # TODO: 각 동전에 대해 반복
-    ## 현재 동전으로 거슬러줄 수 있는 개수 계산    
-    ## 개수가 0보다 크면 결과에 추가
+    # TODO — 큰 동전부터 하나씩 훑기
+    #   coins가 큰 순서로 들어온다는 걸 이용해서 앞에서부터 본다.
+    #   동전 하나마다 하는 일은 세 가지.
+    #     · 남은 금액을 이 동전으로 몇 개까지 덮을 수 있는지 구한다
+    #     · 0개가 아니면 result에 적고 total_coins에도 더한다
+    #     · 쓰고 남은 금액을 들고 다음 동전으로 넘어간다
     pass
     
     return total_coins, result
