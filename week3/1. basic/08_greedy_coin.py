@@ -49,8 +49,12 @@ def make_change_greedy(change, coins):
     #     · 남은 금액을 이 동전으로 몇 개까지 덮을 수 있는지 구한다
     #     · 0개가 아니면 result에 적고 total_coins에도 더한다
     #     · 쓰고 남은 금액을 들고 다음 동전으로 넘어간다
-    pass
-    
+    for coin in coins:
+        changed_coins = change // coin
+        if changed_coins != 0:
+            change, result[coin] = change % coin, changed_coins
+        total_coins += changed_coins
+
     return total_coins, result
 
 # 테스트 케이스

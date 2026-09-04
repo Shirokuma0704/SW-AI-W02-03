@@ -84,20 +84,21 @@ def fibonacci_memo(n, memo=None):
     # TODO ① — memo 준비
     #   재귀가 여러 갈래로 뻗어도 계산 결과는 한 곳에 모여야 의미가 있어.
     #   첫 호출일 때만 빈 딕셔너리를 만들고, 이후 호출에게는 그걸 물려준다.
-    pass
+    if memo is None: memo = {}
 
     # TODO ② — 기저 사례 (base case)
     #   더 쪼갤 수 없어서 답을 그냥 아는 n. 여기서 재귀가 멈춘다.
-    pass
+    if n <= 1: return n
 
     # TODO ③ — 이미 계산해둔 값인지 먼저 확인
     #   memo에 n이 있으면 다시 계산할 이유가 없어. 꺼내서 바로 돌려준다.
     #   지수 시간을 O(n)으로 바꾸는 지점이 바로 여기야.
-    pass
+    if n in memo:
+        return memo[n]
 
     # TODO ④ — 없으면 계산해서 memo에 넣기
     #   더 작은 문제를 재귀로 구해 합치고, 그 결과를 memo[n]에 저장한다.
-    pass
+    memo[n] = (fibonacci_memo(n-1, memo) + fibonacci_memo(n-2, memo))
     
     return memo[n]
 

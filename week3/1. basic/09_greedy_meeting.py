@@ -22,7 +22,7 @@
 - 이전 회의가 끝난 후에 시작하는 회의만 선택
 """
 
-def select_meetings(meetings):
+def select_meetings(meeting):
     """
     회의실 배정 (그리디)
     
@@ -34,24 +34,28 @@ def select_meetings(meetings):
     """
     # TODO ① — 회의가 하나도 없는 경우
     #   정렬할 것도 고를 것도 없으니, 아래로 내려가지 말고 바로 답을 내고 끝낸다.
-    pass
+    meetings = meeting[::]
+    if meeting is None: return []
 
     # TODO ② — 종료 시간이 빠른 순으로 줄 세우기
     #   빨리 끝나는 회의를 먼저 잡을수록 뒤에 남는 시간이 길어져.
     #   이 정렬 하나가 그리디의 근거 전부야.
-    pass
-
+    meetings.sort(key=lambda x: (x[1], x[0]))
     selected = []
 
     # TODO ③ — 첫 회의 선택
     #   정렬해둔 덕에 맨 앞 회의는 무조건 답에 들어간다.
     #   이게 "직전에 끝난 시각"의 출발점이 돼.
-    pass
+    selected.append(meetings[0])
+    end_time = meetings[0][1]
 
     # TODO ④ — 나머지를 앞에서부터 확인
     #   회의를 하나씩 보면서, 시작 시각이 "직전에 끝난 시각" 이후인 것만 고른다.
     #   고를 때마다 "직전에 끝난 시각"도 갱신해야 해.
-    pass
+    for meet in meetings[1:]:
+        if end_time <= meet[0]:
+            selected.append(meet)
+            end_time = meet[1]
     
     return len(selected), selected
 
