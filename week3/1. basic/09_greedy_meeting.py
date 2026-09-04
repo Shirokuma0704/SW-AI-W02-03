@@ -34,8 +34,10 @@ def select_meetings(meeting):
     """
     # TODO ① — 회의가 하나도 없는 경우
     #   정렬할 것도 고를 것도 없으니, 아래로 내려가지 말고 바로 답을 내고 끝낸다.
+    if not meeting: return 0,[]
+
+
     meetings = meeting[::]
-    if meeting is None: return []
 
     # TODO ② — 종료 시간이 빠른 순으로 줄 세우기
     #   빨리 끝나는 회의를 먼저 잡을수록 뒤에 남는 시간이 길어져.
