@@ -45,15 +45,30 @@ def bfs(graph, start):
     """
     visited = []
     
-    # TODO: 큐 생성 및 시작 정점 추가
-    ## 방문한 정점 집합
-    pass
+    # TODO ① — 출발선 세팅
+    #   BFS는 "발견은 했는데 아직 안 들여다본 정점"을 줄 세워두고
+    #   하나씩 꺼내 처리하는 방식이야. 그 대기줄을 하나 만들고,
+    #   시작 정점을 첫 손님으로 세워두면 준비 끝.
+    #   그리고 이미 발견한 정점이 뭐였는지 적어둘 곳도 하나 필요해.
+    queue = deque([start])
+    discovered = {start}
 
-    # TODO: 큐가 빌 때까지 반복
-    ## 큐에서 정점 꺼내기
-    ## 인접한 정점들 확인
-    ## 방문하지 않은 정점이면 큐에 추가
-    pass
+
+    # TODO ② — 대기줄이 빌 때까지 반복
+    #   줄이 비었다 = 더 갈 곳이 없다 = 탐색 끝.
+    #   한 바퀴 도는 동안 하는 일은 세 가지야.
+    #     · 줄에서 정점 하나를 꺼낸다
+    #     · 그 정점의 이웃 목록을 훑는다
+    #     · 그중 아직 발견 안 된 이웃만 줄 뒤에 세운다
+    while queue:
+        node = queue.popleft()
+        visited.append(node)
+
+        for neighbor in graph[node]:
+            if neighbor not in discovered:
+                discovered.add(neighbor)
+                queue.append(neighbor)
+
     
     return visited
 
