@@ -1,4 +1,4 @@
-"""
+r"""
 [그래프 - 다익스트라 최단경로 (Dijkstra's Shortest Path)]
 
 ▣ 문제 배경
@@ -63,8 +63,6 @@ dijkstra(n: int, edges: list[tuple[int, int, int]], start: int) -> list
 """
 
 import heapq
-
-
 INF = float('inf')
 
 
@@ -79,7 +77,28 @@ def dijkstra(n: int, edges: list, start: int) -> list:
     # TODO: dist 를 INF 로 초기화하고 dist[start] = 0
     # TODO: 우선순위 큐(heapq)로 BFS-like 최단경로 탐색
     # TODO: dist 반환
-    pass
+    graph = {v: [] for v in range(n)}
+
+    # 간선 추가
+    for u, destination,length in edges:
+        graph[u].append((destination, length))  # u → v
+
+    dist = [INF for _ in range(n)]
+    dist[start] = 0
+
+    queue = []
+    heapq.heappush(queue,(0,start))
+    while len(queue) > 0:
+        (d, u) = heapq.heappop(queue)
+        if d > dist[u]: continue  # 이미 더 짧은 경로로 처리됨
+        for v, w in graph[u]:
+            if dist[u] + w < dist[v]:
+                dist[v] = dist[u] + w
+                heapq.heappush(queue, (dist[v], v))
+
+    return dist
+
+
 
 
 def _format(dist):
@@ -126,3 +145,11 @@ if __name__ == "__main__":
     edges = [(0, 1, 0), (1, 2, 0), (0, 2, 5)]
     print(f"  n={n}, edges={edges}, start=0")
     print(f"  최단 거리: {_format(dijkstra(n, edges, 0))}")
+
+    print("[테스트 6] 음수 간선 포함 (다익스트라 가정 위반)")
+    n = 3
+    edges = [(0, 1, 2), (0, 2, 5), (2, 1, -4)]
+    print(f"  n={n}, edges={edges}, start=0")
+    print(f"  최단 거리: {_format(dijkstra(n, edges, 0))}")
+    print()
+
