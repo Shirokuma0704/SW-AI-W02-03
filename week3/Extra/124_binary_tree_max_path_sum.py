@@ -88,7 +88,7 @@ class Solution:
             else:
                 left = maxpathsum_(root.left)
                 if left <= 0: left = 0
-            
+
             if root.right is None:
                 right = 0
             else:
