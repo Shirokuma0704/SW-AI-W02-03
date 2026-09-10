@@ -44,3 +44,11 @@ Desktop.ini
 *.log
 *.bak
 *.swp
+
+# ---- C / CMake (CLion) ----
+cmake-build-*/
+compile_commands.json
+*.o
+*.obj
+*.exe
+*.out
